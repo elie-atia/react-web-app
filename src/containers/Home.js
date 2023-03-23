@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Grid, Row, Col as Column } from '../components/FlexBox/FlexBox';
 import StickerCard from '../components/Widgets/StickerCard/StickerCard';
-import { HomeIcon } from '../assets/images/HomeIcon';
 import { withStyle, useStyletron } from 'baseui';
 import { useSelector, useDispatch } from 'react-redux';
 import { update_market_pairs } from '../state/MarketSlice/marketSlice';
@@ -79,44 +78,17 @@ useEffect(() => {
 
   });
 
-  const stickerMenu = [
-    {
-      title: 'Title 1',
-      subtitle: 'subtitle 1',
-      icon: <HomeIcon />,
-    },
-    {
-      title: 'Title 2',
-      subtitle: 'subtitle 2',
-      icon: <HomeIcon />,
-    },
-    {
-      title: 'Title 3',
-      subtitle: 'subtitle 3',
-      icon: <HomeIcon />,
-    },
-    {
-      title: 'Title 4',
-      subtitle: 'subtitle 4',
-      icon: <HomeIcon />,
-    },
-    {
-      title: 'Title 5',
-      subtitle: 'subtitle 5',
-      icon: <HomeIcon />,
-    },
-  ]
 
   return (
     <Grid fluid={true}>
       <Row>
-        {stickerMenu.map((sticker, index) =>
+        {market_pairs && Object.values(market_pairs).map((ticker, index) =>
           <Col lg={3} sm={6} xs={12} className={mb30} key={index}>
             <StickerCard
-              title={sticker.title}
-              subtitle={sticker.subtitle}
-              icon={sticker.icon}
-              price='5$'
+              title={ticker.symbol}
+              subtitle={ticker.symbol}
+              icon={ticker.symbol}
+              price= {ticker.lastPrice}
               link="#"
               linkText='Full details'
             />
