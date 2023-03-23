@@ -9,15 +9,19 @@ const Routes = () => {
     return (
         <Switch>
             <Route exact={true} path='/'>
-            <Layout>
-                <Home />
+                <Layout>
+                    <Home />
                 </Layout>
             </Route>
             <Route exact={true} path='/page1'>
-                <Page1 />
+                <Layout>
+                    <Page1 />
+                </Layout>
             </Route>
             <Route exact={true} path='/page2'>
-                <Page2 />
+                <Layout>
+                    <Page2 />
+                </Layout>
             </Route>
         </Switch>
     );
