@@ -55,7 +55,7 @@ useEffect(() => {
 
 
   const mb30 = css({
-      marginBottom: '16px',
+    marginBottom: '16px',
 
   });
 
@@ -86,21 +86,22 @@ useEffect(() => {
       icon: <HomeIcon />,
     },
   ]
+
   return (
     <Grid fluid={true}>
       <Row>
-        {stickerMenu.map((sticker,index)=>
-        <Col lg={3} sm={6} xs={12} className={mb30}>
-        <StickerCard
-          title= {sticker.title}
-          subtitle= {sticker.subtitle}
-          icon={sticker.icon}
-          price='5$'
-          link="#"
-          linkText='Full details'
-        />
-      </Col>)}
-        
+        {stickerMenu.map((sticker, index) =>
+          <Col lg={3} sm={6} xs={12} className={mb30} key={index}>
+            <StickerCard
+              title={sticker.title}
+              subtitle={sticker.subtitle}
+              icon={sticker.icon}
+              price='5$'
+              link="#"
+              linkText='Full details'
+            />
+          </Col>)}
+
       </Row>
     </Grid>
   );
