@@ -6,6 +6,7 @@ import { Provider as StyletronProvider } from 'styletron-react';
 import { LightTheme, BaseProvider } from 'baseui';
 
 function App() {
+  const engine = new Styletron();
   return (
     //Styletron is the style engine for base-web
     //BaseProvider will save the style state and LightTheme
