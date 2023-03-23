@@ -1,9 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Grid, Row, Col as Column } from '../components/FlexBox/FlexBox';
 import StickerCard from '../components/Widgets/StickerCard/StickerCard';
 import { HomeIcon } from '../assets/images/HomeIcon';
 import { withStyle, useStyletron } from 'baseui';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { update_market_pairs } from '../state/MarketSlice/marketSlice';
 
 const Col = withStyle(Column, () => ({
   '@media only screen and (max-width: 574px)': {
@@ -19,6 +20,9 @@ const Home = () => {
   const [css] = useStyletron();
   const ws = useRef(null);
   let connectionObj = {};
+
+  const dispatch = useDispatch();
+  const market_pairs = useSelector((state) => state.market.market_pairs);
 
   const getTickerBySymbol = (data) => {
     let ticker = {};  
@@ -42,7 +46,7 @@ const Home = () => {
     connectionObj[connection] = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${streams}`);
     connectionObj[connection].onmessage = evt => {
       let ticker = getTickerBySymbol(JSON.parse(evt.data).data);
-        console.log(ticker)
+        dispatch(update_market_pairs(ticker));
     }
     if (connectionObj[connection]) {
         connectionObj[connection].onerror = evt => {
