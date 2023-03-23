@@ -3,14 +3,15 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from './containers/Home';
 import Page1 from './containers/Page1';
 import Page2 from './containers/Page2';
-import Sidebar from './containers/Sidebar';
+import Layout from './containers/Layout/Layout';
 
 const Routes = () => {
     return (
         <Switch>
-            <Sidebar />
             <Route exact={true} path='/'>
+            <Layout>
                 <Home />
+                </Layout>
             </Route>
             <Route exact={true} path='/page1'>
                 <Page1 />
