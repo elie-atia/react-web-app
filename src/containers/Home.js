@@ -20,13 +20,29 @@ const Home = () => {
   const ws = useRef(null);
   let connectionObj = {};
 
-
+  const getTickerBySymbol = (data) => {
+    let ticker = {};  
+    data?.forEach(item => {
+        let symbol = item.symbol || item.s;
+        ticker[symbol] = {
+            symbol: symbol,
+            lastPrice: item.lastPrice || item.c,
+            priceChange: item.priceChange || item.p,
+            priceChangePercent: item.priceChangePercent || item.P,
+            highPrice: item.highPrice || item.h,
+            lowPrice: item.lowPrice || item.l,
+            quoteVolume: item.quoteVolume || item.q,
+        }
+    })
+    return ticker;
+}
   const connectSocketStreams = (streams) => {
     streams = streams.join('/');
     let connection = btoa(streams);
     connectionObj[connection] = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${streams}`);
     connectionObj[connection].onmessage = evt => {
-        console.log(evt.data)
+      let ticker = getTickerBySymbol(JSON.parse(evt.data).data);
+        console.log(ticker)
     }
     if (connectionObj[connection]) {
         connectionObj[connection].onerror = evt => {
