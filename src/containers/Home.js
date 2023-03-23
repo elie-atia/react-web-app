@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Grid, Row, Col as Column } from '../components/FlexBox/FlexBox';
 import StickerCard from '../components/Widgets/StickerCard/StickerCard';
 import { HomeIcon } from '../assets/images/HomeIcon';
@@ -17,6 +17,43 @@ const Col = withStyle(Column, () => ({
 
 const Home = () => {
   const [css] = useStyletron();
+  const ws = useRef(null);
+  let connectionObj = {};
+
+
+  const connectSocketStreams = (streams) => {
+    streams = streams.join('/');
+    let connection = btoa(streams);
+    connectionObj[connection] = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${streams}`);
+    connectionObj[connection].onmessage = evt => {
+        console.log(evt.data)
+    }
+    if (connectionObj[connection]) {
+        connectionObj[connection].onerror = evt => {
+            console.error(evt);
+        }
+    }
+}
+
+const disconnectSocketStreams = (streams) => {
+    streams = streams.join('/');
+    let connection = btoa(streams);
+    if (connectionObj[connection].readyState === WebSocket.OPEN) {
+        ws.current && ws.current.close();
+    }  
+}
+
+
+
+
+useEffect(() => {
+    connectSocketStreams(['!ticker@arr']);
+    return () => {
+        disconnectSocketStreams(['!ticker@arr'])
+    }
+}, []);
+
+
   const mb30 = css({
       marginBottom: '16px',
 
