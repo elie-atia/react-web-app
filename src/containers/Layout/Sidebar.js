@@ -6,7 +6,7 @@ export default function Sidebar() {
     <SidebarWrapper >
  <MenuWrapper>
         
-          <NavLink
+          <NavLink  
             to= '/'
             key={1}
             exact={true}
@@ -16,12 +16,12 @@ export default function Sidebar() {
               borderRadius: '50px 0 0 50px',
             }}
           >
-          <Svg> <HomeIcon /></Svg> 
+          <Svg> <HomeIcon/></Svg> 
             Home
           </NavLink>
           <NavLink
             to= '/page1'
-            key={1}
+            key={2}
             exact={true}
             activeStyle={{
               color: '#00C58D',
@@ -34,7 +34,7 @@ export default function Sidebar() {
           </NavLink>
           <NavLink
             to= '/page2'
-            key={1}
+            key={3}
             exact={true}
             activeStyle={{
               color: '#00C58D',
