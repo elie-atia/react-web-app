@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './containers/Home';
 import Login from './containers/Login';
 import Signup from './containers/Signup';
+import TradingPage from './containers/TradingPage';  
+
 import Page1 from './containers/Page1';
 import Page2 from './containers/Page2';
 import Layout from './containers/Layout/Layout';
@@ -18,6 +20,7 @@ const Routes = () => {
                 <Route exact={true} path='/' component={Home} />
                 <Route exact={true} path='/login' component={Login} />
                 <Route exact={true} path='/signup' component={Signup} />
+                <Route exact={true} path='/trading' component={TradingPage} />
 
                 <Layout>
                     <Route exact={true} path='/page1' component={Page1} />
