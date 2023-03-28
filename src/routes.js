@@ -13,9 +13,7 @@ const Routes = () => {
     return (
         <>
             <Switch>
-                <Layout>
-                    <Route exact={true} path='/' component={Home} />
-                </Layout>
+                <Route exact={true} path='/' component={Home} />
                 <Layout>
                     <Route exact={true} path='/page1' component={Page1} />
                 </Layout>
