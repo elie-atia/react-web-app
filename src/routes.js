@@ -4,11 +4,11 @@ import Home from './containers/Home';
 import Login from './containers/Login';
 import Signup from './containers/Signup';
 import TradingPage from './containers/TradingPage';  
+import TransactionHistoryRoute from './containers/TransactionHistoryRoute';
 
 import Page1 from './containers/Page1';
 import Page2 from './containers/Page2';
 import Layout from './containers/Layout/Layout';
-
 // The Layout component is used to wrap the Switch component that contains the Route components for each page. 
 // This ensures that the layout is consistent across all pages, and allows you to easily update the header and 
 // footer components in one place.
@@ -21,6 +21,7 @@ const Routes = () => {
                 <Route exact={true} path='/login' component={Login} />
                 <Route exact={true} path='/signup' component={Signup} />
                 <Route exact={true} path='/trading' component={TradingPage} />
+                <Route exact={true} path='/history' component={TransactionHistoryRoute} />
 
                 <Layout>
                     <Route exact={true} path='/page1' component={Page1} />
