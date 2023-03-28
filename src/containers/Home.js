@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
 import Features from '../components/Features';
+import {Link} from 'react-router-dom';
 
 const Home = () => {
   const features = [
@@ -36,10 +37,10 @@ const Home = () => {
         <Typography variant="body2" color="textSecondary" component="p">
         In this 100% free and fun platform, you can: buy, sell, calculate your profits and compare your performance with those of other users.
         </Typography>
-        <Button variant="contained" color="primary">
+        <Button component={Link} to="/login" variant="contained" color="primary">
           Login
         </Button>
-        <Button variant="outlined" color="primary">
+        <Button component={Link} to="/signup"variant="outlined" color="primary">
           Signup
         </Button>
       </CardContent>
